@@ -87,12 +87,12 @@ matrix matrix::operator/(const double v)
 }
 double matrix::Trace() const
 {
-	double res;
+	double res=0.0;
 	for (unsigned i = 0; i < this->size1; i++)
 	{
 		for (unsigned j = 0; j < this->size2; j++)
 		{
-			if (i == j) res += (i,j);
+			if (i == j) res += data[i][j];
 		}
 	}
 	return res;
