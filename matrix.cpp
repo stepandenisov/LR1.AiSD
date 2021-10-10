@@ -23,6 +23,23 @@ double& matrix::operator()(const unsigned x, const unsigned y)
 	if ((y >= size2) || (y < 0)) throw"Invelid Index";
 	return data[x][y];
 }
+matrix::matrix(const matrix& cp)
+{
+	this->size1 = cp.size1;
+	this->size2 = cp.size2;
+	this->data = new double* [size1];
+	for (unsigned i = 0; i < size1; i++)
+	{
+		this->data[i] = new double[size2];
+	}
+	for (unsigned i = 0; i < size1; i++)
+	{
+		for (unsigned j = 0; j < size2; j++)
+		{
+			this->data[i][j] = cp.data[i][j];
+		}
+	}
+}
 matrix matrix::operator+(matrix& m2)
 {
 	if ((this->size1 != m2.size1) || (this->size2 != m2.size2)) throw"Different sizes";
@@ -79,6 +96,7 @@ matrix matrix::operator/(const double v)
 }
 double matrix::Trace()
 {
+	if (size1 != size2) { throw "It is not a square matrix"; }
 	double res=0;
 	for (unsigned i = 0; i < this->size1; i++)
 	{

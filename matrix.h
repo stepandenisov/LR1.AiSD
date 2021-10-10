@@ -9,6 +9,9 @@ private:
 	static double epsilon;
 public:
 	matrix(const unsigned size1=2, const unsigned size2=2, const double value=0);
+	matrix(const matrix& cp);
+	const unsigned GetSize1() const { return size1; }
+	const unsigned GetSize2() const { return size2; }
 	double& operator()(const unsigned x, const unsigned y);
 	matrix operator+(matrix& m2);
 	matrix operator-(matrix& m2);
